@@ -1,4 +1,4 @@
-interface Jobs{
+interface jobs{
     val start: Int
     val last: Int
     val salary: Int
