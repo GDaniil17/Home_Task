@@ -11,6 +11,7 @@ fun main() {
     example.enqueue(7)
     println(example.lis)
 
+    
     var exampleTwo = stack()
     exampleTwo.push(1)
     exampleTwo.push(2)
