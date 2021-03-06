@@ -1,10 +1,11 @@
-class stack {
-    var lis = mutableListOf<Any>()
-    fun push(element: Any){
+class Stack<T>() {
+    var lis = mutableListOf<T>()
+    fun push(element: T){
         lis.add(element)
     }
-    fun pop(){
-        println(lis[lis.size-1])
-        lis = lis.subList(0, lis.size-1)
+    fun pop(): T {
+        val tmp = lis[lis.size-1]
+        lis.removeLast()
+        return tmp
     }
 }

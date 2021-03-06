@@ -1,11 +1,11 @@
-class queue(){
-    var lis = mutableListOf<Any>()
-    fun enqueue(element: Any){
+class Queue<T>(){
+    var lis = mutableListOf<T>()
+    fun enqueue(element: T){
         lis.add(element)
-        //println(lis)
     }
-    fun dequeue(){
-        println(lis[0])
-        lis = lis.subList(1, lis.size)
+    fun dequeue(): T {
+        val tmp = lis[0]
+        lis.removeFirst()
+        return tmp
     }
 }
