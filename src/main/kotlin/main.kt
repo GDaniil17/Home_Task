@@ -21,4 +21,5 @@ fun main() {
     exampleTwo.push(5)
     println(exampleTwo.lis)
 
+
 }
