@@ -10,7 +10,6 @@ fun main() {
     example.enqueue(6)
     example.enqueue(7)
     println(example.lis)
-
     val exampleTwo = Stack<Int>()
     exampleTwo.push(1)
     exampleTwo.push(2)
@@ -20,6 +19,4 @@ fun main() {
     println(exampleTwo.pop())
     exampleTwo.push(5)
     println(exampleTwo.lis)
-
-
 }
