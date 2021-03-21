@@ -1,13 +1,12 @@
-data class ConnectionClass(val tr: Boolean = true) {
-    private var lis = listOf<ListOfSeaAndEarthAnimals>()
+class ConnectionClass(private var lis: List<ListOfSeaAndEarthAnimals>) {
     fun connect(): List<ListOfSeaAndEarthAnimals> {
-        for (i in ListOfAnimals().getAllSpecies()) {
-            if (ListOfSeaAnimals().getCertainAnimal(i.name) == "") {
-                lis += ListOfSeaAndEarthAnimals(i.name, null, null, i.wild, i.additionalInfoAbout)
+        ListOfAnimals().getAllSpecies().map{
+            if (ObjectOfSeaAnimals().getCertainAnimal(it.name) != null) {
+                lis += ListOfSeaAndEarthAnimals(it.name, null, null, it.wild, it.additionalInfoAbout)
             } else {
-                val data: Fish? = ListOfSeaAnimals().getCertainAnimalEx(i.name)
+                val data: Fish? = ObjectOfSeaAnimals().getCertainAnimalEx(it.name)
                 if (data != null) {
-                    lis += ListOfSeaAndEarthAnimals(i.name, data.area, data.age, i.wild, i.additionalInfoAbout)
+                    lis += ListOfSeaAndEarthAnimals(it.name, data.area, data.age, it.wild, it.additionalInfoAbout)
                 }
             }
         }
@@ -23,6 +22,6 @@ data class ConnectionClass(val tr: Boolean = true) {
     }
 
     fun accord(): List<ListOfSeaAndEarthAnimals> {
-        return lis.filter { it.additionalInfoAbout != "" }
+        return lis.filter { it.additionalInfoAbout.isNotEmpty() }
     }
 }

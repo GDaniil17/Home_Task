@@ -10,12 +10,11 @@ class ListOfAnimals {
 
     fun getCertainAnimal(name: String): Animal? {
         var ans: Animal? = null
-        for (i in lis) {
-            if (i.name == name) {
-                ans = i
-                break
+        lis.map{
+            if (it.name == name) {
+                ans = it
             }
-        }
+        }.firstOrNull()
         return ans
     }
 }
