@@ -4,8 +4,8 @@ import java.util.concurrent.Executors
 import java.util.concurrent.Future
 import kotlin.concurrent.thread
 
-fun main(args: Array<String>) {
-    /*
+fun main() {
+
     // Задание #1
 
     val t1 = ClassThread("#1 ")
@@ -82,7 +82,7 @@ fun main(args: Array<String>) {
         }
     }.apply { start() }
 
-     */
+
 
     // Задание #3
 
@@ -162,11 +162,10 @@ fun main(args: Array<String>) {
 
 
 }
-/*
+
 class CommonVariable {
     @Volatile
     var i = 0
 }
 
 
- */
