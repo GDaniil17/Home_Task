@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.4.30"
+    kotlin("jvm") version "1.4.31"
     application
 }
 
@@ -12,21 +12,15 @@ repositories {
     mavenCentral()
 }
 
-tasks.test {
-    useJUnit()
+dependencies {
+    implementation("org.jetbrains.kotlin", "kotlin-jdbc", "0.12.213")
+    implementation("org.xerial","sqlite-jdbc", "3.34.0")
 }
 
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"
 }
-dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-}
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    jvmTarget = "1.8"
-}
-val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions {
-    jvmTarget = "1.8"
+
+application {
+    mainClassName = "MainKt"
 }
