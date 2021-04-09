@@ -1,5 +1,5 @@
 
-data class ListOfSeaAndEarthAnimals(
+data class ObjectOfSeaAndEarthAnimals(
     val name: String,
     val area: String?,
     val age: Int?,
