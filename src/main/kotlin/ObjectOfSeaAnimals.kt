@@ -13,14 +13,4 @@ class ObjectOfSeaAnimals {
             it
         }.firstOrNull()
     }
-
-    fun getCertainAnimalEx(name: String): Fish? {
-        var ans: Fish? = null
-        lis.map{
-            if (it.name == name) {
-                ans = it
-            }
-        }.firstOrNull()
-        return ans
-    }
 }

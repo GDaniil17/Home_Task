@@ -1,10 +1,11 @@
-class ConnectionClass(private var lis: List<ObjectOfSeaAndEarthAnimals>) {
+class ConnectionClass {
+    private lateinit var lis: List<ObjectOfSeaAndEarthAnimals>
     fun connect(): List<ObjectOfSeaAndEarthAnimals> {
         ListOfAnimals().getAllSpecies().map{
             if (ObjectOfSeaAnimals().getCertainAnimal(it.name) != null) {
                 lis += ObjectOfSeaAndEarthAnimals(it.name, null, null, it.wild, it.additionalInfoAbout)
             } else {
-                val data: Fish? = ObjectOfSeaAnimals().getCertainAnimalEx(it.name)
+                val data: Fish? = ObjectOfSeaAnimals().getCertainAnimal(it.name)
                 if (data != null) {
                     lis += ObjectOfSeaAndEarthAnimals(it.name, data.area, data.age, it.wild, it.additionalInfoAbout)
                 }
