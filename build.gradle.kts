@@ -13,7 +13,6 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test-junit"))
     implementation("org.jetbrains.kotlin", "kotlin-jdbc", "0.12.213")
     implementation("org.xerial","sqlite-jdbc", "3.34.0")
 }
