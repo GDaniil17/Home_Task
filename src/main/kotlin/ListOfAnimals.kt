@@ -9,10 +9,9 @@ class ListOfAnimals {
     fun getAllSpecies(): List<Animal> = lis
 
     fun getCertainAnimal(name: String): Animal? {
-        return lis.mapNotNull {
+        return lis.firstOrNull {
             it.name == name
-            it
-        }.firstOrNull()
+        }
     }
 
 }

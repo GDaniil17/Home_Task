@@ -8,9 +8,8 @@ class ObjectOfSeaAnimals {
     fun getAllSpecies(): List<Fish> = lis
 
     fun getCertainAnimal(name: String): Fish? {
-        return lis.mapNotNull {
+        return lis.firstOrNull {
             it.name == name
-            it
-        }.firstOrNull()
+        }
     }
 }
