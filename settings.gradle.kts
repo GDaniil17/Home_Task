@@ -1,3 +1,3 @@
 
-rootProject.name = "HT-6"
+rootProject.name = "Home_Task"
 

@@ -12,10 +12,6 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(kotlin("test-junit"))
-}
-
 tasks.test {
     useJUnit()
 }

@@ -1,5 +1,4 @@
 import java.util.concurrent.Callable
-import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
 import kotlin.concurrent.thread
@@ -20,24 +19,24 @@ fun main() {
 
 
     for (j in 0..10) {
-        Thread(Runnable {
+        Thread {
             for (i in 0..10) {
                 println(i)
             }
-        }).start()
+        }.start()
     }
-    val tDSL1 = thread(priority = 10) {
+    thread {
         for (i in 11..20) {
             println(Thread.currentThread().name + " $i with priority 1")
         }
     }
-    val tDSL2 = thread(priority = 10) {
+    thread(priority = 10) {
         for (i in 11..20) {
             println(Thread.currentThread().name + " $i with priority 10")
         }
     }
 
-    val tDSL3 = thread(isDaemon = true) {
+    thread(isDaemon = true) {
         for (i in 11..20) {
             println(Thread.currentThread().name + " $i Demon")
         }
@@ -47,41 +46,40 @@ fun main() {
 
     val obj = CommonVariable()
 
-    val variable = Thread {
+    Thread {
         repeat(10) {
-            println("Incremented i ${++obj.i}")
+            println("${Thread.currentThread().name}: common value is i ${obj.i}")
             Thread.sleep(100)
         }
     }.apply { start() }
 
-    val checkVariable1 = Thread {
+    Thread {
         var j1 = obj.i
         while (obj.i < 10) {
             if (obj.i != j1) {
-                println("checkVariable1: New value in i ${obj.i}")
+                println("${Thread.currentThread().name}: common value is i ${obj.i}")
                 j1 = obj.i
             }
         }
     }.apply { start() }
-    val checkVariable2 = Thread {
+    Thread {
         var j2 = obj.i
         while (obj.i < 10) {
             if (obj.i != j2) {
-                println("checkVariable2: New value in i ${obj.i}")
+                println("${Thread.currentThread().name}: common value is i ${obj.i}")
                 j2 = obj.i
             }
         }
     }.apply { start() }
-    val checkVariable3 = Thread {
+    Thread {
         var j3 = obj.i
         while (obj.i < 10) {
             if (obj.i != j3) {
-                println("checkVariable3: New value in i ${obj.i}")
+                println("${Thread.currentThread().name}: common value is i ${obj.i}")
                 j3 = obj.i
             }
         }
     }.apply { start() }
-
 
 
     // Задание #3
@@ -97,8 +95,7 @@ fun main() {
     repeat(10) {
         executor1.submit(Callable {
             val start = System.nanoTime()
-            while(i < 1_000_000) {
-                i++
+            repeat(1_000_000) {
                 if (i == 1_000_000) {
                     println(Thread.currentThread().name + " i = 1_000_000")
                 }
@@ -112,8 +109,7 @@ fun main() {
     repeat(20) {
         executor2.submit(Callable {
             val start = System.nanoTime()
-            while (i2 < 1_000_000){
-                i2++
+            repeat(1_000_000) {
                 if (i2 == 1_000_000) {
                     println(Thread.currentThread().name + " i2 = 1_000_000")
                 }
@@ -127,8 +123,7 @@ fun main() {
     repeat(30) {
         executor3.submit(Callable {
             val start = System.nanoTime()
-            while(i3 < 1_000_000) {
-                i3++
+            repeat(1_000_000) {
                 if (i3 == 1_000_000) {
                     println(Thread.currentThread().name + " i3 = 1_000_000")
                 }
@@ -139,27 +134,15 @@ fun main() {
     executor3.shutdown()
     Thread.sleep(100)
 
-    var ans: Long = 0
-    res1.forEach{
-        println("res1 "+it.get())
-        ans += it.get()
+    for (i in mapOf(
+        "res1" to
+                res1.sumBy { it.get().toInt() },
+        "res2" to
+                res2.sumBy { it.get().toInt() },
+        "res3" to
+                res3.sumBy { it.get().toInt() })){
+        println("${i.key} ${i.value}")
     }
-    println("ans1 = $ans")
-    ans = 0
-    println()
-    res2.forEach{
-        println("res2 "+it.get())
-        ans += it.get()
-    }
-    println("ans2 = $ans")
-    ans = 0
-    println()
-    res3.forEach{
-        println("res3 "+it.get())
-        ans += it.get()
-    }
-    println("ans3 = $ans")
-
 
 }
 

@@ -1,5 +1,6 @@
 class ClassThread() : Thread() {
-    var threadName: String = ""
+
+    private lateinit var threadName: String
 
     constructor(ThreadName: String) : this() {
         this.threadName = ThreadName
